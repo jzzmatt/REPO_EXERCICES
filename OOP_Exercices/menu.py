@@ -1,6 +1,6 @@
 import sys
+
 from notebook import Notebook
-from note import Note
 
 
 class Menu:

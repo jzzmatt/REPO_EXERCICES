@@ -1,4 +1,4 @@
-from note import Note
+from OOP_Exercices.note import Note
 
 
 class Notebook:
