@@ -1,2 +1,3 @@
-# RepoPython1
-Test Repository
+# SELF TRAINING
+PRIVATE USED REPOSITORY
+Designed for Training Purpose
