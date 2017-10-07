@@ -1,6 +1,7 @@
 import sys
 
-from notebook import Notebook
+from OOP_Exercices.notebook import Notebook
+#from notebook import Notebook
 
 
 class Menu:
