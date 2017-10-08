@@ -34,11 +34,6 @@ class Note:
 
 
 
-
-
-
-
-
         # TESTING  CLASS NOTE
         # n1 = Note("hello first")
         # n2 = Note("hello second")
