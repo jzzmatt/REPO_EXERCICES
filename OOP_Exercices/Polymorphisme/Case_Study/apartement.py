@@ -34,6 +34,7 @@ class Apartment(Property):
     @staticmethod
     def prompt_init():
         parent_init = Property.prompt_init() #Call this static method from SuperClass
+
         #laundry = ''
 
         #while laundry.lower() not in Apartment.valid_laundries:
@@ -57,5 +58,15 @@ class Apartment(Property):
         return parent_init
 
 
+'''
+TESTING & CHECK INHERITANCE
+
+print(Apartment.__mro__)
+
+
+apt = Apartment.prompt_init()
+
+print(apt)
+'''
 
 

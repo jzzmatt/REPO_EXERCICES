@@ -1,6 +1,6 @@
-
-from purchase_and_rental import Rental
 from house import House
+from purchase_and_rental import Rental
+
 
 
 
@@ -16,12 +16,18 @@ class HouseRental(Rental, House):
 
 
 
+h = HouseRental()
 
-
-
+print(h.prompt_init())
 '''
 TESTING
-'''
+
+
+house = HouseRental()
+house.display()
+
+
+
 
 #init = HouseRental.prompt_init()
 
@@ -30,3 +36,5 @@ TESTING
 
 #house = HouseRental(**init)
 #house.d
+
+'''

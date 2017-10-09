@@ -29,3 +29,4 @@ class Property:
                     beds= input("Enter number of bedrooms: "),
                     baths = input("Enter number of baths: ")
                     )
+

@@ -13,7 +13,7 @@ class Purchase:
 
 
     def display(self):
-        super().display()
+        super().display()    #this superclass witch object have not this method
         print("PURCHASE DETAILS")
         print("selling price: {}".format(self.price))
         print("estimated taxes: {}".format(self.taxes))
@@ -60,4 +60,7 @@ class Rental:
             furnished = Validinput.get_valid_input("is the property furnished? ",
                                                    ("yes", "no"))
         )
+
+
+print(Purchase.__mro__)
 

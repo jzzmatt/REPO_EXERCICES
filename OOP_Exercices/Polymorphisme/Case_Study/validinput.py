@@ -7,13 +7,13 @@ class Validinput(object):
         response = input(input_string)
 
         while response.lower() not in valid_options:
-            response = input(input_string)
+            response = input(input_string)  #Actualy just update the response but with no roles
 
-        return(response)
-
+        return(response)  #else response is in the tuples, return this elemn in tuples
 
 
 '''
-TESTING 
+
+#TESTING
 print(Validinput.get_valid_input("What laundry? ", ("coin", "ensuite", "none")))
 '''
