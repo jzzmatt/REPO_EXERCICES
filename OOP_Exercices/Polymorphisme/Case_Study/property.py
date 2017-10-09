@@ -23,7 +23,7 @@ class Property:
     @staticmethod
     def prompt_init():
         '''This method use the Python dict constructor to create a dictionnary of values
-            that can be passed into __init__, the value of each keys is prompyted with a call to input
+            that can be passed into __init__, the value of each keys is prompted with a call to input
             '''
         return dict(square_feet= input("Enter the square feet: "),
                     beds= input("Enter number of bedrooms: "),
