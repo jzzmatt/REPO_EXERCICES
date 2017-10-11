@@ -139,7 +139,7 @@ class HouseRental(Rental, House):
         init.update(Rental.prompt_init())
         return init
     prompt_init = staticmethod(prompt_init)
-
+'''
 class ApartmentRental(Rental, Apartment):
     def prompt_init():
         init = Apartment.prompt_init()
@@ -186,9 +186,12 @@ class Agent:
         PropertyClass = self.type_map[(property_type, payment_type)]
         init_args = PropertyClass.prompt_init()
         self.property_list.append(PropertyClass(**init_args))
-
-'''
-
 print(HouseRental.__mro__)
 
 '''
+
+
+init = HouseRental.prompt_init()
+
+house = HouseRental(**init)
+house.display()

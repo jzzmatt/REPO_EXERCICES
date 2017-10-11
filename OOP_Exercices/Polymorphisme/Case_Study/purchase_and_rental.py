@@ -1,5 +1,7 @@
 from validinput import Validinput
 
+
+
 class Purchase:
     def __init__(self,
                  price='',
@@ -62,5 +64,5 @@ class Rental:
         )
 
 
-print(Purchase.__mro__)
+#print(Purchase.__mro__)
 

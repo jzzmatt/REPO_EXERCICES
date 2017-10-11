@@ -1,11 +1,10 @@
 from house import House
-from purchase_and_rental import Rental
+from purchase_and_rental import Purchase, Rental
 
 
 
 
 class HouseRental(Rental, House):
-
 
     @staticmethod
     def prompt_init():
@@ -16,23 +15,25 @@ class HouseRental(Rental, House):
 
 
 
-h = HouseRental()
+init = HouseRental.prompt_init()
 
-print(h.prompt_init())
+house = HouseRental(**init)
+#house.display()
+
+#print(HouseRental.__mro__)
+
 '''
 TESTING
 
 
 house = HouseRental()
 house.display()
+print(house.prompt_init())
 
 
 
 
-#init = HouseRental.prompt_init()
 
-#house = HouseRental(**init)
-#house.display()
 
 #house = HouseRental(**init)
 #house.d
