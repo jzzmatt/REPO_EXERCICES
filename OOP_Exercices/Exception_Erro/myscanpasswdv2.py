@@ -9,13 +9,17 @@ Deencrypted password
 
 '''
 import re
+import hashlib
 
 class Account(object):
     account_list = []
 
     def __init__(self, username, password):
             self.username = username
-            self.password = password
+            if PasswordValidation(password).total_Scan():
+                self.password = password  # Call the Hashing Class
+            else:
+                raise ValueError("Your Password don't meet complexity Requirement")
 
             Account.account_list.append(self)
 
@@ -25,41 +29,50 @@ class Account(object):
        return user_list
 
 
-class PasswordValidation(Account):
+class PasswordValidation():
 
-    def __init__(self,username, password):
-        super().__init__(username, password)
-
+    def __init__(self, password):
+        self._password = password
 
     def check_length(self):
-        return len(self.password) >= 6
+        return len(self._password) >= 6
 
 
     def check_Number(self):
-        if re.search('[0-9]', self.password) != None:
+        if re.search('[0-9]', self._password) != None:
             return True
         return False
 
 
     def check_espcial_char(self):
-            if re.search('[$#@]', self.password) != None:
+            if re.search('[$#@]', self._password) != None:
                 return True
             return False
 
     def total_Scan(self):
         if self.check_length() and self.check_Number() and self.check_espcial_char():
-            return ("Account {}, password Total Scan Complete".format(self.username))
+            return True
         return False
 
 
 
 
+
+
+
+
+
+
+
+osvald = Account("Osvalde", "passwor")
+print(osvald.display())
+
 #junior = Account("junior", "Checkk2009$")
-junior = PasswordValidation("Junior", "Checkk2009")
+#junior = PasswordValidation("Junior", "Checkk2009")
 #print(PasswordValidation(junior.password).check_length())
 #print(PasswordValidation(junior.password).check_espcial_char())
 #print(PasswordValidation(junior.password).check_Number())
-print(junior.display())
+#print(junior.display())
 #print(junior.total_Scan())
 
 
