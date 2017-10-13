@@ -19,13 +19,16 @@ class Account(object):
 
             Account.account_list.append(self)
 
+    def display(self):
+        #return encrypted password , not plain text
+       user_list = [(account.username,account.password) for account in Account.account_list]
+       return user_list
 
 
-class PasswordValidation():
+class PasswordValidation(Account):
 
-    def __init__(self, password):
-        self.password = password
-        self.valid = []
+    def __init__(self,username, password):
+        super().__init__(username, password)
 
 
     def check_length(self):
@@ -43,13 +46,22 @@ class PasswordValidation():
                 return True
             return False
 
+    def total_Scan(self):
+        if self.check_length() and self.check_Number() and self.check_espcial_char():
+            return ("Account {}, password Total Scan Complete".format(self.username))
+        return False
 
 
 
-junior = Account("junior", "Checkk2009$")
+
+#junior = Account("junior", "Checkk2009$")
+junior = PasswordValidation("Junior", "Checkk2009")
 #print(PasswordValidation(junior.password).check_length())
 #print(PasswordValidation(junior.password).check_espcial_char())
 #print(PasswordValidation(junior.password).check_Number())
+print(junior.display())
+#print(junior.total_Scan())
+
 
 
 
