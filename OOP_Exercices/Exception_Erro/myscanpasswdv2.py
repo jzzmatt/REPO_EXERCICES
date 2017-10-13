@@ -3,9 +3,8 @@ PASSWORD STORAGE
 Create an Account (Username, Password)
 ForgetPassword, Enter 3 Answer to 3 Question for Password Recovery
 Encrypted the plain text password and Store it
-Search an Account
 Recovery an Account password 
-Deencrypted password
+
 
 '''
 import re
@@ -16,10 +15,12 @@ class Account(object):
 
     def __init__(self, username, password):
             self.username = username
-            if PasswordValidation(password).total_Scan():
-                self.password = password  # Call the Hashing Class
+            if PasswordValidation(password).pass_all_scan():
+                self.password = HashPassword(password).get_hash
             else:
-                raise ValueError("Your Password don't meet complexity Requirement")
+                raise ValueError("Your Password doesn't meet complexity Requirement")
+
+
 
             Account.account_list.append(self)
 
@@ -27,6 +28,9 @@ class Account(object):
         #return encrypted password , not plain text
        user_list = [(account.username,account.password) for account in Account.account_list]
        return user_list
+
+
+
 
 
 class PasswordValidation():
@@ -49,22 +53,24 @@ class PasswordValidation():
                 return True
             return False
 
-    def total_Scan(self):
+    def pass_all_scan(self):
         if self.check_length() and self.check_Number() and self.check_espcial_char():
             return True
         return False
 
 
+class HashPassword():
+    def __init__(self, password):
+        self._password = password
+
+    @property
+    def get_hash(self):
+        _hashing_passwd = hashlib.sha1(str.encode(self._password)).hexdigest()
+        return _hashing_passwd
 
 
 
-
-
-
-
-
-
-osvald = Account("Osvalde", "passwor")
+osvald = Account("Osvald", "password20$$")
 print(osvald.display())
 
 #junior = Account("junior", "Checkk2009$")
