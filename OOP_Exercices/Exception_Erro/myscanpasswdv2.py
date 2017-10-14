@@ -11,26 +11,41 @@ import re
 import hashlib
 
 class Account(object):
-    account_list = []
+    dbaccount = {}
 
     def __init__(self, username, password):
-            self.username = username
-            if PasswordValidation(password).pass_all_scan():
-                self.password = HashPassword(password).get_hash
-            else:
-                raise ValueError("Your Password doesn't meet complexity Requirement")
+        self._credential = {}
+        self.username = username
+        self.password = HashPassword(self.account_verification(password)).get_hash
+        self._credential[self.username] = self.password #Setup the Object Dict
+        Account.set_dbaccount(self._credential)  #Setup a Gloab Object Dict
 
 
+    def get_account(self):
+        return self._credential
 
-            Account.account_list.append(self)
+    def set_account(self, username, newpassword):
+        if username in self._credential and self.account_verification(newpassword):
+            self._credential[username]= HashPassword(self.account_verification(newpassword)).get_hash
 
-    def display(self):
-        #return encrypted password , not plain text
-       user_list = [(account.username,account.password) for account in Account.account_list]
-       return user_list
+        else:
+            raise ValueError("This username {} doesnt' exit".format(username))
 
+    @classmethod
+    def show_dbaccount(cls):
+        return cls.dbaccount
 
+    @classmethod
+    def set_dbaccount(cls, value):
+        account = value
+        cls.dbaccount.update(account)
 
+    @staticmethod
+    def account_verification(userpassword):
+        if PasswordValidation(userpassword).pass_all_scan():
+            return userpassword
+        else:
+            raise ValueError("Your Password doesn't meet complexity Requirement")
 
 
 class PasswordValidation():
@@ -70,16 +85,18 @@ class HashPassword():
 
 
 
-osvald = Account("Osvald", "password20$$")
-print(osvald.display())
+osvald = Account("Osvald", "password##200")
+print(osvald.get_account())
+junior = Account("Junior","raro2099$")
+print(junior.get_account())
+junior.set_account("Junior", "Nova2010$$")
+print(junior.get_account())
+osvald.set_account("Osvald", "##$$0ab")
+print(osvald.get_account())
+print(Account.show_dbaccount())
+#print(osvald.get_account())
+#print(osvald.show_dbaccount())
 
-#junior = Account("junior", "Checkk2009$")
-#junior = PasswordValidation("Junior", "Checkk2009")
-#print(PasswordValidation(junior.password).check_length())
-#print(PasswordValidation(junior.password).check_espcial_char())
-#print(PasswordValidation(junior.password).check_Number())
-#print(junior.display())
-#print(junior.total_Scan())
 
 
 
