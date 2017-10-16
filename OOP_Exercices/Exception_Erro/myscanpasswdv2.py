@@ -21,15 +21,36 @@ class Account(object):
         Account.set_dbaccount(self._credential)  #Setup a Gloab Object Dict
 
 
-    def get_account(self):
+
+    @property
+    def account(self):
         return self._credential
 
-    def set_account(self, username, newpassword):
+
+    @account.setter
+    def account(self, *args):
+        username = None
+        newpassword = None
+
+        for items in args:
+            username, newpassword = items
+
         if username in self._credential and self.account_verification(newpassword):
-            self._credential[username]= HashPassword(self.account_verification(newpassword)).get_hash
+            self._credential[username] = HashPassword(self.account_verification(newpassword)).get_hash
 
         else:
             raise ValueError("This username {} doesnt' exit".format(username))
+
+
+    #def get_account(self):
+    #    return self._credential
+
+    #def set_account(self, username, newpassword):
+    #    if username in self._credential and self.account_verification(newpassword):
+     #       self._credential[username]= HashPassword(self.account_verification(newpassword)).get_hash
+
+     #   else:
+     #       raise ValueError("This username {} doesnt' exit".format(username))
 
     @classmethod
     def show_dbaccount(cls):
@@ -86,14 +107,14 @@ class HashPassword():
 
 
 osvald = Account("Osvald", "password##200")
-print(osvald.get_account())
+print(osvald.account)
 junior = Account("Junior","raro2099$")
-print(junior.get_account())
-junior.set_account("Junior", "Nova2010$$")
-print(junior.get_account())
-osvald.set_account("Osvald", "##$$0ab")
-print(osvald.get_account())
-print(Account.show_dbaccount())
+print(junior.account)
+junior.account= ("Junior", "love##209")
+print(junior.account)
+#osvald.set_account("Osvald", "##$$0ab")
+#print(osvald.get_account())
+#print(Account.show_dbaccount())
 #print(osvald.get_account())
 #print(osvald.show_dbaccount())
 

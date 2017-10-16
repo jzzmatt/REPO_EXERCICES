@@ -25,3 +25,4 @@ s.silly
 del s.silly
 
 
+print(help(Silly))
