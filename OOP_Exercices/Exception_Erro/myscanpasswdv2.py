@@ -9,6 +9,7 @@ Recovery an Account password
 '''
 import re
 import hashlib
+import sys
 
 class Account(object):
     dbaccount = {}
@@ -105,7 +106,7 @@ class HashPassword():
         return _hashing_passwd
 
 
-
+'''
 osvald = Account("Osvald", "password##200")
 print(osvald.account)
 junior = Account("Junior","raro2099$")
@@ -117,6 +118,90 @@ print(junior.account)
 #print(Account.show_dbaccount())
 #print(osvald.get_account())
 #print(osvald.show_dbaccount())
+'''
+
+
+class Menu():
+    def __init__(self):
+
+
+        self.choices = {"1": self.create_new,
+                        "2": self.verify_your_account,
+                        "3": self.verify_db_account,
+                        "4": self.update_account,
+                        "5": self.quit
+
+        }
+
+    def display_menu(self):
+
+        print('''
+        ACCOUNT MENU
+        ------------
+        
+        1. Create a New Account
+        2. Verify an Your Account
+        3. Verify the Account DB
+        4. Update or change your Account
+        5. Quit
+        ''')
+
+
+
+    def run(self):
+
+        while True:
+            self.display_menu()
+            choice = input('ENTER> ')
+            action = self.choices.get(choice)
+
+            if action:
+                action()
+
+
+            else:
+                print("{} is not a valid choice".format(choice))
+
+
+
+    def create_new(self):
+        username = input("Enter your Username: ")
+        password = input("Enter your Password: ")
+
+        self.login = Account(username, password)
+
+
+
+    def verify_your_account(self):
+        print(self.login.account)
+
+
+
+    def verify_db_account(self):
+        print(self.login.dbaccount)
+
+
+
+    def update_account(self):
+        self.login.account = (input("Enter your Username: "), input("Enter your Password: "))
+
+
+
+    def quit(self):
+        print("Your a Quitting...")
+        sys.exit(0)
+
+
+
+
+
+
+
+if __name__ == "__main__":
+    Menu().run()
+
+
+
 
 
 
