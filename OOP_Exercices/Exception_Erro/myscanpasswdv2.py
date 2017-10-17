@@ -19,7 +19,7 @@ class Account(object):
         self.username = username
         self.password = HashPassword(self.account_verification(password)).get_hash
         self._credential[self.username] = self.password #Setup the Object Dict
-        Account.set_dbaccount(self._credential)  #Setup a Gloab Object Dict
+        Account.set_dbaccount(self._credential)  #Setup a Global Object Dict
 
 
 
@@ -30,14 +30,14 @@ class Account(object):
 
     @account.setter
     def account(self, *args):
-        username = None
-        newpassword = None
+        #username = None
+        #newpassword = None
 
         for items in args:
             username, newpassword = items
 
-        if username in self._credential and self.account_verification(newpassword):
-            self._credential[username] = HashPassword(self.account_verification(newpassword)).get_hash
+        if username in self.dbaccount and self.account_verification(newpassword):
+            self.dbaccount[username] = HashPassword(self.account_verification(newpassword)).get_hash
 
         else:
             raise ValueError("This username {} doesnt' exit".format(username))
@@ -140,8 +140,8 @@ class Menu():
         ------------
         
         1. Create a New Account
-        2. Verify an Your Account
-        3. Verify the Account DB
+        2. Verify Your Account
+        3. Verify Account DB
         4. Update or change your Account
         5. Quit
         ''')
@@ -169,6 +169,7 @@ class Menu():
         password = input("Enter your Password: ")
 
         self.login = Account(username, password)
+        print("Your Account has been Added !")
 
 
 
@@ -184,6 +185,7 @@ class Menu():
 
     def update_account(self):
         self.login.account = (input("Enter your Username: "), input("Enter your Password: "))
+        print("Your Account has been Updated")
 
 
 
