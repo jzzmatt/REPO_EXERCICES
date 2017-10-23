@@ -39,6 +39,10 @@ class Check(object):
         self.bad_guesses.append(self.userinput)
 
 
+    def is_winer(self, word_random):
+        return (''.join(self.good_guesses) == word_random)
+
+
 
 
 
@@ -67,9 +71,6 @@ class GuessLetter(Check):
             self.get_badguesses().append(self.userinput)
 
 
-
-
-
 RANDOMWORD = ['lion',
               'tigre',
               'elephant',
@@ -81,6 +82,7 @@ RANDOMWORD = ['lion',
               'chita',
               'rabbit',
               ]
+
 
 random.shuffle(RANDOMWORD)
 random_word = RANDOMWORD.pop()
@@ -105,6 +107,9 @@ while True:
     userinput = input("Please Enter your guesses\n: ")
     guessletter = GuessLetter(userinput, random_word)
 
+    if guessletter.is_winer(random_word):
+        print("You WIN!!!!")
+        break
 
     if not guessletter.isalready_guess() and guessletter.isin_randomword():
         guessletter.update_goodlist()

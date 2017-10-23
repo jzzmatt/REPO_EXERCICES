@@ -1,6 +1,6 @@
 guesses = []  #first we create an Empty list
 
-word = "PIANO"
+word = "RABBIT"
 
 
 def get_letter():
