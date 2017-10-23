@@ -1,5 +1,7 @@
 guesses = []  #first we create an Empty list
 
+word = "PIANO"
+
 
 def get_letter():
     '''
@@ -27,6 +29,10 @@ def check_duplicate(yourletter, guessword):
     return False
 
 
+def is_matching(userguess, randomword):
+    return userguess in randomword
+
+
 
 while True:  #this loop, while display the guesses list and get eache user letter
     print("ENTER YOUR  GUESSES LETTER: ")
@@ -37,11 +43,14 @@ while True:  #this loop, while display the guesses list and get eache user lette
     print("\n{}".format('- ' * len(guesses)))
 
 
-    letter = get_letter()
+    letter = get_letter().upper()
 
-    if check_duplicate(letter, guesses):
-        print ("You have already Guesses this letter !!")
+    if check_duplicate(letter, guesses) or not is_matching(letter, word):
+        print ("either you have already guess this letter\nor "
+               "your guesses doesn't match the secret word !!!")
         continue
+
+
     else:
         guesses.append(letter)
 
