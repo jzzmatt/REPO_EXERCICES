@@ -23,6 +23,8 @@ if the letter is not in your name, print only a blank space
 
 '''
 
+import random
+
 
 class Traduce_by_x(object):
     def __init__(self, yourinteger):
@@ -42,7 +44,7 @@ class Traduce_by_x(object):
         for l in self.get_x:
             print ("({})".format(l), end=' ')
 
-
+'''
 
 while True:
     print (" TRANSLATE INTEGER BY 'X' ")
@@ -54,3 +56,127 @@ while True:
 
     bottom_menu = input("Press <Enter> to Continue, Q to <Quit> ").upper()
     if bottom_menu == "Q" : break
+    
+    '''
+
+
+RANDOMWORD = ['lion',
+              'tigre',
+              'elephant',
+              'eagle',
+              'shark',
+              'snake',
+              'monkey',
+              'leopard',
+              'chita',
+              'rabbit',
+              ]
+
+
+random.shuffle(RANDOMWORD)
+random_word = RANDOMWORD.pop()
+
+
+
+class Word(object):
+    def __init__(self, yourword):
+        self.yourword = yourword
+
+    def cover(self):
+        new_word = ''
+
+        for l in self.yourword:
+            if l != '-':
+                l = '-'
+                new_word += l
+        return new_word
+
+
+class Uncover(Word):
+    def __init__(self, yourword):
+        super().__init__(yourword)
+
+    def uncover(self, userinput):
+        old_str = self.cover()
+        uncoverstr = ''
+
+        if userinput in self.yourword:
+            idx = self.yourword.index(userinput)
+            uncoverstr += old_str[:idx+1] + userinput + old_str[idx+1:]
+
+
+        return uncoverstr
+
+
+
+
+
+'''
+
+word2 = Uncover("stone")
+
+print(word2.cover())
+print(word2.uncover("e"))
+'''
+word3 = Uncover("stone")
+newwword=''
+while True:
+
+    display = word3.uncover(newwword)
+    print(display)
+
+    userinput = input(">: ")
+
+    newwword+= userinput
+
+
+
+
+
+
+
+
+
+'''
+def get_coverlist(yourlist):
+    coverlist = []  # ['-', '-']
+
+    for i in yourlist:
+        i = '- '
+        coverlist.append(i)
+
+    return coverlist
+
+
+def get_uncoverlist(guessword, yourword):
+    new_word = ''
+    for i in guessword:
+        if i in yourword:
+            new_word += i+' '
+
+        else:
+            new_word += '- '
+    return new_word
+
+
+guessesword =''
+
+while True:
+
+    print(random_word)
+    coverlist = get_coverlist(random_word)
+    print('{}\n{}'.format(''.join(coverlist), guessesword))
+
+    user_input = input("> ")
+    uncover = get_uncoverlist(random_word, user_input)
+    guessesword += uncover
+
+    menu_bottom = input("Press <Enter> to Continue, Q <Quit>").upper()
+
+    if menu_bottom == 'Q' : break
+    
+'''
+
+
+
+
