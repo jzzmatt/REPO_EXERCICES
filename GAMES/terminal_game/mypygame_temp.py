@@ -21,9 +21,20 @@ else:
 #STEP 2 DEFINE WINDOWS OR SURFACE SIZE
 windows_size = (500, 400)
 screen_surface = pygame.display.set_mode(windows_size, 0, 32)
+pygame.display.set_caption("Game Template")
+
+#2.1 DEFINE COLOR RGB (Red Green Blue)
+WHITE = (255,255,255)
+BLUE_LIGTH = (185, 240, 240)
+RED = (255, 0, 0)
+GREEN = (0,255,0)
+MARRON = (145, 35, 30)
+BLUE = (0,0,255)
+YELLOW = (255, 255,0)
+BLACK = (0, 0, 0)
 
 
-#STEP 3 HANDLE EVENT
+#STEP 3 BODY GAME & HANDLE EVENT
 exit_game = False
 
 
@@ -42,13 +53,20 @@ while not exit_game:
     #==> UPDATE OBJECT (Movement, Collision, outofBoard, Score,...)
 
 
-    #===> DRAW SURFACE
+    # ====> DISPLAY THE SURFACE | WHILE you have a BaKGround Use BLIT Method
+    screen_surface.fill(BLUE_LIGTH)
 
 
-    #====> DISPLAY THE SURFACE
+    #===> DRAW ON SURFACE (can be Built-ins or Image)
+    #pygame.draw.line(screen_surface, RED, (20, 40), (200,300), 5)
+    #pygame.draw.rect(screen_surface, MARRON, pygame.Rect(200, 30, 200, 100), 3)
+
+
+
 
 
     #=====> UPDATE THE SURFACE
+    pygame.display.update()
 
 
 
