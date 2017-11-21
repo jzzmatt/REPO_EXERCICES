@@ -101,13 +101,14 @@ while not exit_game:
     #spaceship_rect.bottom += pix_speed
 
         #=> Define Obj1 or SHIP BoardLimit
+    #Board Limit Check X_Axis
     if spaceship_rect.left <= 0:
          spaceship_rect.left = 0
 
     elif spaceship_rect.right >= (background.get_width() - spaceship.get_width()):
         spaceship_rect.right = (background.get_width() - spaceship.get_width())
 
-
+    #Board Limit Check Y _Axis
     if spaceship_rect.top >= (background_cord.bottom - spaceship.get_height()):
         spaceship_rect.top = (background_cord.bottom - spaceship.get_height())
 
