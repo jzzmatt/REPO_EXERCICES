@@ -50,7 +50,13 @@ BLACK = (0, 0, 0)
 
 
 #2.2 DEFINE SPEED & CLOCK (FPS)
-pix_speed = 10
+pix_speed = (0, 0)
+
+def movement(speed, velocity):
+    x_pix, y_pix = speed
+    x_velc, y_velc = velocity
+    speed = (x_pix + x_velc, y_pix + y_velc)
+    return speed
 
 #STEP 3 BODY GAME & HANDLE EVENT
 exit_game = False
@@ -67,37 +73,46 @@ while not exit_game:
                 exit_game = True
                 exit()
 
-
-        #==> CAPTURE DYNAMIC MOVEMENT
             if event.key == K_LEFT:
-               spaceship_rect.left -= pix_speed
+                pix_speed = movement(pix_speed, (-5,0))
 
             if event.key == K_RIGHT:
-                spaceship_rect.right += pix_speed
+                pix_speed = movement(pix_speed, (5, 0))
 
             if event.key == K_UP:
-                spaceship_rect.top -= pix_speed
+                pix_speed = movement(pix_speed, (0, -5))
 
             if event.key == K_DOWN:
-                spaceship_rect.bottom += pix_speed
+                pix_speed = movement(pix_speed, (0, 5))
+
+
+        if event.type == KEYUP:
+            if event.key == K_LEFT or event.key == K_RIGHT:
+                pix_speed = (0, 0)
+
+            if event.key == K_UP or event.key == K_DOWN:
+                pix_speed = (0, 0)
+
+
+    #Define Movement
+    spaceship_rect.left += pix_speed[0]  # <-----
+    #spaceship_rect.right += pix_speed
+    spaceship_rect.top += pix_speed[1]
+    #spaceship_rect.bottom += pix_speed
 
         #=> Define Obj1 or SHIP BoardLimit
-            if spaceship_rect.left <= 0:
-                spaceship_rect.left = 0
+    if spaceship_rect.left <= 0:
+         spaceship_rect.left = 0
 
-            elif spaceship_rect.right >= (background.get_width() - spaceship.get_width()):
-                spaceship_rect.right = (background.get_width() - spaceship.get_width())
-
-
-            if spaceship_rect.top >= (background_cord.bottom - spaceship.get_height()):
-                spaceship_rect.top = (background_cord.bottom - spaceship.get_height())
-
-            elif spaceship_rect.bottom <= 0:
-                  spaceship_rect.bottom = 0
+    elif spaceship_rect.right >= (background.get_width() - spaceship.get_width()):
+        spaceship_rect.right = (background.get_width() - spaceship.get_width())
 
 
+    if spaceship_rect.top >= (background_cord.bottom - spaceship.get_height()):
+        spaceship_rect.top = (background_cord.bottom - spaceship.get_height())
 
-
+    elif spaceship_rect.top <= 0:
+        spaceship_rect.top = 0
 
     #==> topDATE OBJECT (Movement, Collision, outofBoard, Score,...)
 
