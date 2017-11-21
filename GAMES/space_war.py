@@ -34,7 +34,7 @@ spaceship = pygame.image.load(img_spaceship).convert_alpha()
 background_cord = background.get_rect()
 spaceship_rect = spaceship.get_rect(midbottom =(320, 480))
 #x_ship, y_ship = (background_cord.midbottom[0], (background_cord.bottom - spaceship.get_height()))
-x_ship, y_ship = spaceship_rect[0], spaceship_rect[1]
+#x_ship, y_ship = spaceship_rect[0], spaceship_rect[1]
 #print(ship_init)
 #print(spaceship_rect)
 
@@ -70,42 +70,42 @@ while not exit_game:
 
         #==> CAPTURE DYNAMIC MOVEMENT
             if event.key == K_LEFT:
-                x_ship -= pix_speed
+               spaceship_rect.left -= pix_speed
 
             if event.key == K_RIGHT:
-                x_ship += pix_speed
+                spaceship_rect.right += pix_speed
 
             if event.key == K_UP:
-                y_ship -= pix_speed
+                spaceship_rect.top -= pix_speed
 
             if event.key == K_DOWN:
-                y_ship += pix_speed
+                spaceship_rect.bottom += pix_speed
 
         #=> Define Obj1 or SHIP BoardLimit
-            if x_ship <= 0:
-                x_ship = 0
+            if spaceship_rect.left <= 0:
+                spaceship_rect.left = 0
 
-            elif x_ship >= (background.get_width() - spaceship.get_width()):
-                x_ship = (background.get_width() - spaceship.get_width())
-
-
-            if y_ship >= (background_cord.bottom - spaceship.get_height()):
-                y_ship = (background_cord.bottom - spaceship.get_height())
-
-            elif y_ship <= 0:
-                  y_ship = 0
+            elif spaceship_rect.right >= (background.get_width() - spaceship.get_width()):
+                spaceship_rect.right = (background.get_width() - spaceship.get_width())
 
 
+            if spaceship_rect.top >= (background_cord.bottom - spaceship.get_height()):
+                spaceship_rect.top = (background_cord.bottom - spaceship.get_height())
+
+            elif spaceship_rect.bottom <= 0:
+                  spaceship_rect.bottom = 0
 
 
 
-    #==> UPDATE OBJECT (Movement, Collision, outofBoard, Score,...)
+
+
+    #==> topDATE OBJECT (Movement, Collision, outofBoard, Score,...)
 
 
     # ====> DISPLAY THE SURFACE | WHILE you have a BaKGround Using BLIT Method
     #screen_surface.fill(BLUE_LIGTH)
     screen_surface.blit(background, (0, 0))
-    screen_surface.blit(spaceship, (x_ship, y_ship))
+    screen_surface.blit(spaceship, spaceship_rect)
 
 
     #===> DRAW ON SURFACE (can be Built-ins or Image)
@@ -115,7 +115,7 @@ while not exit_game:
 
 
 
-    #=====> UPDATE THE SURFACE
+    #=====> topDATE THE SURFACE
     pygame.display.update()
 
 
